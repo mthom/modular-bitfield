@@ -88,6 +88,7 @@ impl BitfieldStruct {
                     bytes: Self::Bytes,
                 ) -> ::core::result::Result<Self::InOut, ::modular_bitfield::error::InvalidBitPattern<Self::Bytes>>
                 {
+                    #[allow(clippy::unnecessary_cast)]
                     let __bf_max_value: Self::Bytes = (0x01 as Self::Bytes)
                         .checked_shl(Self::BITS as ::core::primitive::u32)
                         .unwrap_or(<Self::Bytes>::MAX);
