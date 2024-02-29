@@ -1,4 +1,4 @@
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield]
 #[repr(C, transparent, u32)] // The macro simply ignores `repr(C)` and `repr(transparent)`

@@ -1,4 +1,4 @@
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield]
 #[cfg_attr(not(test), repr(u32))]

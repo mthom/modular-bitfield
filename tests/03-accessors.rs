@@ -18,7 +18,7 @@
 // setters and return type for all the getters. We will follow up with a more
 // precise signature in a later test case.
 
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield]
 pub struct MyFourBytes {

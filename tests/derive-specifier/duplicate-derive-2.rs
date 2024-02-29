@@ -1,4 +1,4 @@
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield]
 #[derive(BitfieldSpecifier)] #[derive(BitfieldSpecifier)]

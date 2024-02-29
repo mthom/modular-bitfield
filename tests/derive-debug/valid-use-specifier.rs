@@ -1,4 +1,4 @@
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield(filled = false)] // Requires just 4 bits!
 #[derive(BitfieldSpecifier)]

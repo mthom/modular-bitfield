@@ -1,6 +1,6 @@
 // These tests check the conversions from and to bytes.
 
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 // use std::convert::TryFrom;
 
 #[bitfield]

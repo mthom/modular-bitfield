@@ -1,6 +1,6 @@
 [package]
 name = "scryer-modular-bitfield"
-version = "0.11.3"
+version = "0.11.4"
 edition = "2021"
 authors = ["Mark Thom <markjordanthom@gmail.com>", "Robin Freyler <robinfreyler@web.de>"]
 license = "MIT/Apache-2.0"
@@ -43,7 +43,7 @@ name = "playground"
 path = "playground.rs"
 
 [dependencies]
-modular-bitfield-impl = { path = "impl", version = "0.11.2" }
+scryer-modular-bitfield-impl = { path = "impl", version = "0.11.2" }
 static_assertions = "1.1"
 
 [profile.bench]

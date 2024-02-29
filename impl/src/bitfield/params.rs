@@ -18,7 +18,7 @@ where
 /// # Example
 ///
 /// ```rust
-/// # use modular_bitfield::prelude::*;
+/// # use scryer_modular_bitfield::prelude::*;
 /// #
 /// #[bitfield(bytes = 4, filled = true)]
 /// #[derive(BitfieldSpecifier)]

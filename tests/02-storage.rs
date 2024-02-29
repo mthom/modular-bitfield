@@ -11,7 +11,7 @@
 // Don't worry for now what happens if the total bit size is not a multiple of
 // 8 bits. We will come back to that later to make it a compile-time error.
 
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield]
 pub struct MyFourBytes {

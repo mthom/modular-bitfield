@@ -52,7 +52,7 @@
 // also re-exports from the procedural macro crate so that users can get
 // everything through one library.
 
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 // #[bitfield]
 pub struct MyFourBytes {

@@ -1,7 +1,7 @@
 /// Tests to check for correct execution of checked setters.
 
-use modular_bitfield::prelude::*;
-use modular_bitfield::error::OutOfBounds;
+use scryer_modular_bitfield::prelude::*;
+use scryer_modular_bitfield::error::OutOfBounds;
 
 #[bitfield]
 #[derive(Debug, PartialEq)]

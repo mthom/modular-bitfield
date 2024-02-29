@@ -13,7 +13,7 @@
 
 #![allow(dead_code)]
 
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 /// This generates code by the macros that we are going to test.
 ///

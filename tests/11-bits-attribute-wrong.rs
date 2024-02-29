@@ -4,7 +4,7 @@
 // Ensure that the error message points to the incorrect attribute and contains
 // the correct number of bits in some form.
 
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield]
 pub struct RedirectionTableEntry {

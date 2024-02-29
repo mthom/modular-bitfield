@@ -1,6 +1,6 @@
 // Tests bitfield specifiers of more than 64 bit.
 
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield]
 pub struct SomeMoreBytes {

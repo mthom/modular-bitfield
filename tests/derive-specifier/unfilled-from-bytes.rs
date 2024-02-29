@@ -1,5 +1,5 @@
-use modular_bitfield::prelude::*;
-use modular_bitfield::error::OutOfBounds;
+use scryer_modular_bitfield::prelude::*;
+use scryer_modular_bitfield::error::OutOfBounds;
 
 #[bitfield(filled = false)]
 #[derive(BitfieldSpecifier, Debug, PartialEq, Eq, Copy, Clone)]

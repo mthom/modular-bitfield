@@ -1,4 +1,4 @@
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[derive(BitfieldSpecifier, Debug, PartialEq, Copy, Clone)]
 pub enum Mode {

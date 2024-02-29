@@ -19,7 +19,7 @@
 // the user does provide the attribute then the program must not compile if
 // their value is wrong.
 
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield]
 pub struct RedirectionTableEntry {

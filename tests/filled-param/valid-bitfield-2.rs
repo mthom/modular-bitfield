@@ -1,4 +1,4 @@
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 // The bitfield has exactly 8 bits and therefore is filled.
 #[bitfield(filled = true)]

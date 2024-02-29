@@ -1,4 +1,4 @@
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 #[bitfield]
 struct RawIdentifiers {
     r#struct: B5,

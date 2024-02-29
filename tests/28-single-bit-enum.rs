@@ -1,8 +1,8 @@
 // Validates that in a degenerate case with a single bit, non-power-of-two enums
 // behave as expected.
 
-use modular_bitfield::error::InvalidBitPattern;
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::error::InvalidBitPattern;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield]
 pub struct UselessStruct {

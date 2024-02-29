@@ -9,7 +9,7 @@
 //     ╟─────────────────╫───────────╫─────────────────────────╫───────╢
 //     ║        a        ║     b     ║            c            ║   d   ║
 
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield]
 pub struct EdgeCaseBytes {

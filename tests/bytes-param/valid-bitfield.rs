@@ -1,4 +1,4 @@
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 // Just requires exactly 32 bits (4 bytes) as expected.
 #[bitfield(bytes = 4)]

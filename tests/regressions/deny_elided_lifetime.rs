@@ -1,6 +1,6 @@
 #![deny(elided_lifetimes_in_paths)]
 
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[bitfield]
 #[derive(Debug)]

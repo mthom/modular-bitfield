@@ -1,4 +1,4 @@
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 #[derive(BitfieldSpecifier)]
 pub union InvalidUnionSpecifier {

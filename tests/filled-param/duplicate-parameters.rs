@@ -1,4 +1,4 @@
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 // There are 2 duplicate `filled` parameters.
 #[bitfield(filled = true, filled = true)]

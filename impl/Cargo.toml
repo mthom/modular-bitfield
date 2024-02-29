@@ -1,8 +1,8 @@
 [package]
-name = "modular-bitfield-impl"
+name = "scryer-modular-bitfield-impl"
 version = "0.11.2"
 edition = "2018"
-authors = ["Robin Freyler <robinfreyler@web.de>"]
+authors = ["Mark Thom <markjordanthom@gmail.com>", "Robin Freyler <robinfreyler@web.de>"]
 license = "MIT/Apache-2.0"
 readme = "../README.md"
 

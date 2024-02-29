@@ -1,4 +1,4 @@
-use modular_bitfield::prelude::*;
+use scryer_modular_bitfield::prelude::*;
 
 // The bitfield has only 7 bits and therefore is unfilled.
 #[bitfield(filled = false)]

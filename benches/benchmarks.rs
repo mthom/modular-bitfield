@@ -8,7 +8,7 @@ use criterion::{
     criterion_main,
     Criterion,
 };
-use modular_bitfield::{
+use scryer_modular_bitfield::{
     bitfield,
     specifiers::{
         B12,
