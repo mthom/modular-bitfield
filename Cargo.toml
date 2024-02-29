@@ -1,14 +1,14 @@
 [package]
-name = "modular-bitfield"
-version = "0.11.2"
-edition = "2018"
-authors = ["Robin Freyler <robinfreyler@web.de>"]
+name = "scryer-modular-bitfield"
+version = "0.11.3"
+edition = "2021"
+authors = ["Mark Thom <markjordanthom@gmail.com>", "Robin Freyler <robinfreyler@web.de>"]
 license = "MIT/Apache-2.0"
 readme = "README.md"
 
-repository = "https://github.com/robbepop/modular-bitfield"
+repository = "https://github.com/mthom/modular-bitfield"
 documentation = "https://docs.rs/modular-bitfield"
-description = "Allows to easily define bitfield types with modular building blocks."
+description = "Allows to easily define bitfield types with modular building blocks. This is a forked version of the modular-bitfield crate with tweaks for use by Scryer Prolog."
 categories = ["data-structures", "no-std"]
 keywords   = ["bitfield", "bit", "bitfields"]
 
