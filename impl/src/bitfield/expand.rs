@@ -1,23 +1,11 @@
 use super::{
-    config::{
-        Config,
-        ReprKind,
-    },
+    config::{Config, ReprKind},
     field_info::FieldInfo,
     BitfieldStruct,
 };
 use proc_macro2::TokenStream as TokenStream2;
-use quote::{
-    format_ident,
-    quote,
-    quote_spanned,
-};
-use syn::{
-    self,
-    punctuated::Punctuated,
-    spanned::Spanned as _,
-    Token,
-};
+use quote::{format_ident, quote, quote_spanned};
+use syn::{self, punctuated::Punctuated, spanned::Spanned as _, Token};
 
 impl BitfieldStruct {
     /// Expands the given `#[bitfield]` struct into an actual bitfield definition.
@@ -34,7 +22,7 @@ impl BitfieldStruct {
         let repr_impls_and_checks = self.expand_repr_from_impls_and_checks(config);
         let debug_impl = self.generate_debug_impl(config);
 
-        quote_spanned!(span=>
+        let tokens = quote_spanned!(span=>
             #struct_definition
             #check_filled
             #constructor_definition
@@ -44,7 +32,9 @@ impl BitfieldStruct {
             #bytes_check
             #repr_impls_and_checks
             #debug_impl
-        )
+        );
+
+        tokens
     }
 
     /// Expands to the `Specifier` impl for the `#[bitfield]` struct if the
@@ -117,7 +107,7 @@ impl BitfieldStruct {
                 config,
             } = &info;
             if config.skip_getters() {
-                return None
+                return None;
             }
             let field_span = field.span();
             let field_name = info.name();
@@ -345,7 +335,7 @@ impl BitfieldStruct {
             let bytes = config.value;
             quote_spanned!(config.span=>
                 const _: () = {
-                    struct ExpectedBytes { __bf_unused: [::core::primitive::u8; #bytes] };
+                    struct ExpectedBytes { __bf_unused: [::core::primitive::u8; #bytes] }
 
                     ::scryer_modular_bitfield::private::static_assertions::assert_eq_size!(
                         ExpectedBytes,
@@ -499,7 +489,7 @@ impl BitfieldStruct {
             config,
         } = &info;
         if config.skip_getters() {
-            return None
+            return None;
         }
         let struct_ident = &self.item_struct.ident;
         let span = field.span();
@@ -569,7 +559,7 @@ impl BitfieldStruct {
             config,
         } = &info;
         if config.skip_setters() {
-            return None
+            return None;
         }
         let struct_ident = &self.item_struct.ident;
         let span = field.span();
@@ -689,7 +679,9 @@ impl BitfieldStruct {
             #getters
             #setters
         );
-        offset.push(syn::parse_quote! { <#ty as ::scryer_modular_bitfield::Specifier>::BITS });
+        offset.push(
+            syn::parse_quote! { <#ty as ::scryer_modular_bitfield::Specifier>::BITS },
+        );
         Some(getters_and_setters)
     }
 

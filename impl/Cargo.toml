@@ -2,7 +2,10 @@
 name = "scryer-modular-bitfield-impl"
 version = "0.11.2"
 edition = "2018"
-authors = ["Mark Thom <markjordanthom@gmail.com>", "Robin Freyler <robinfreyler@web.de>"]
+authors = [
+    "Mark Thom <markjordanthom@gmail.com>",
+    "Robin Freyler <robinfreyler@web.de>",
+]
 license = "MIT/Apache-2.0"
 readme = "../README.md"
 
@@ -10,14 +13,14 @@ repository = "https://github.com/mthom/modular-bitfield"
 documentation = "https://docs.rs/modular-bitfield"
 description = "Bitfields for structs that allow for modular use of enums."
 categories = ["data-structures"]
-keywords   = ["bitfield", "bit", "bitfields"]
+keywords = ["bitfield", "bit", "bitfields"]
 
 [lib]
 proc-macro = true
 
 [dependencies]
 quote = "1"
-syn = { version = "1", features = ["full"] }
+syn = { version = "2", features = ["full"] }
 proc-macro2 = "1"
 
 [dev-dependencies]
