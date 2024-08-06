@@ -222,7 +222,9 @@ impl BitfieldStruct {
                     }
                     syn::Meta::List(meta_list) => {
                         let mut which = HashMap::new();
-                        for nested_meta in meta_list.tokens {
+                        let parser = Punctuated::<TokenTree, Token![,]>::parse_terminated;
+                        let parts = parser.parse2(meta_list.tokens)?;
+                        for nested_meta in parts {
                             match nested_meta {
                                 TokenTree::Ident(path) => {
 
