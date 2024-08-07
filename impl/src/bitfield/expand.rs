@@ -422,7 +422,7 @@ impl BitfieldStruct {
                     pub fn from_bytes(
                         bytes: [::core::primitive::u8; #next_divisible_by_8 / 8usize]
                     ) -> ::core::result::Result<Self, ::scryer_modular_bitfield::error::OutOfBounds> {
-                        if bytes[(#next_divisible_by_8 / 8usize) - 1] >= (0x01 << (8 - (#next_divisible_by_8 - (#size)))) {
+                        if bytes[(#next_divisible_by_8 / 8usize) - 1] > (((0x01u16 << (8 - (#next_divisible_by_8 - (#size)))) - 1) as u8) {
                             return ::core::result::Result::Err(::scryer_modular_bitfield::error::OutOfBounds)
                         }
                         ::core::result::Result::Ok(Self { bytes })
