@@ -1,9 +1,6 @@
 use super::config::Config;
 use proc_macro2::Span;
-use syn::{
-    parse::Result,
-    spanned::Spanned,
-};
+use syn::{parse::Result, spanned::Spanned, Expr, ExprLit, Lit, MetaNameValue};
 
 /// Raises an unsupported argument compile time error.
 fn unsupported_argument<T>(arg: T) -> syn::Error
@@ -28,7 +25,7 @@ where
 /// }
 /// ```
 pub struct ParamArgs {
-    args: syn::AttributeArgs,
+    args: Vec<MetaNameValue>,
 }
 
 impl syn::parse::Parse for ParamArgs {
@@ -42,8 +39,8 @@ impl syn::parse::Parse for ParamArgs {
 }
 
 impl IntoIterator for ParamArgs {
-    type Item = syn::NestedMeta;
-    type IntoIter = std::vec::IntoIter<syn::NestedMeta>;
+    type Item = syn::MetaNameValue;
+    type IntoIter = std::vec::IntoIter<syn::MetaNameValue>;
 
     fn into_iter(self) -> Self::IntoIter {
         self.args.into_iter()
@@ -53,7 +50,7 @@ impl IntoIterator for ParamArgs {
 impl Config {
     /// Feeds a parameter that takes an integer value to the `#[bitfield]` configuration.
     fn feed_int_param<F>(
-        name_value: syn::MetaNameValue,
+        name_value: &syn::MetaNameValue,
         name: &str,
         on_success: F,
     ) -> Result<()>
@@ -61,8 +58,11 @@ impl Config {
         F: FnOnce(usize, Span) -> Result<()>,
     {
         assert!(name_value.path.is_ident(name));
-        match &name_value.lit {
-            syn::Lit::Int(lit_int) => {
+        match &name_value.value {
+            Expr::Lit(ExprLit {
+                lit: Lit::Int(lit_int),
+                ..
+            }) => {
                 let span = lit_int.span();
                 let value = lit_int.base10_parse::<usize>().map_err(|err| {
                     format_err!(
@@ -86,20 +86,23 @@ impl Config {
     }
 
     /// Feeds a `bytes: int` parameter to the `#[bitfield]` configuration.
-    fn feed_bytes_param(&mut self, name_value: syn::MetaNameValue) -> Result<()> {
+    fn feed_bytes_param(&mut self, name_value: &syn::MetaNameValue) -> Result<()> {
         Self::feed_int_param(name_value, "bytes", |value, span| self.bytes(value, span))
     }
 
     /// Feeds a `bytes: int` parameter to the `#[bitfield]` configuration.
-    fn feed_bits_param(&mut self, name_value: syn::MetaNameValue) -> Result<()> {
+    fn feed_bits_param(&mut self, name_value: &syn::MetaNameValue) -> Result<()> {
         Self::feed_int_param(name_value, "bits", |value, span| self.bits(value, span))
     }
 
     /// Feeds a `filled: bool` parameter to the `#[bitfield]` configuration.
-    fn feed_filled_param(&mut self, name_value: syn::MetaNameValue) -> Result<()> {
+    fn feed_filled_param(&mut self, name_value: &syn::MetaNameValue) -> Result<()> {
         assert!(name_value.path.is_ident("filled"));
-        match &name_value.lit {
-            syn::Lit::Bool(lit_bool) => {
+        match &name_value.value {
+            Expr::Lit(ExprLit {
+                lit: Lit::Bool(lit_bool),
+                ..
+            }) => {
                 self.filled(lit_bool.value, name_value.span())?;
             }
             invalid => {
@@ -119,27 +122,17 @@ impl Config {
     /// If a parameter is malformatted, unexpected, duplicate or in conflict.
     pub fn feed_params<'a, P>(&mut self, params: P) -> Result<()>
     where
-        P: IntoIterator<Item = syn::NestedMeta> + 'a,
+        P: IntoIterator<Item = MetaNameValue> + 'a,
     {
-        for nested_meta in params {
-            match nested_meta {
-                syn::NestedMeta::Meta(meta) => {
-                    match meta {
-                        syn::Meta::NameValue(name_value) => {
-                            if name_value.path.is_ident("bytes") {
-                                self.feed_bytes_param(name_value)?;
-                            } else if name_value.path.is_ident("bits") {
-                                self.feed_bits_param(name_value)?;
-                            } else if name_value.path.is_ident("filled") {
-                                self.feed_filled_param(name_value)?;
-                            } else {
-                                return Err(unsupported_argument(name_value))
-                            }
-                        }
-                        unsupported => return Err(unsupported_argument(unsupported)),
-                    }
-                }
-                unsupported => return Err(unsupported_argument(unsupported)),
+        for ref name_value in params {
+            if name_value.path.is_ident("bytes") {
+                self.feed_bytes_param(name_value)?;
+            } else if name_value.path.is_ident("bits") {
+                self.feed_bits_param(name_value)?;
+            } else if name_value.path.is_ident("filled") {
+                self.feed_filled_param(name_value)?;
+            } else {
+                return Err(unsupported_argument(name_value));
             }
         }
         Ok(())
